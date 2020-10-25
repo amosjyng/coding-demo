@@ -5,7 +5,12 @@ contact_file = "contacts.txt"
 
 if path.exists(contact_file):
     f = open(contact_file, "r")
-    result = json.loads(f.read())
+    result = json.loads("""
+    {
+        "name": "Sherlock",
+        "number": 1278364
+    }
+    """)
     print("I got your contact info! You are {0}, your number is {1}"
         .format(result['name'], result['number']))
 else:
