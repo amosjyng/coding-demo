@@ -17,6 +17,12 @@ int main()
     cout << &c << endl;
     cout << c << endl;
     c = reinterpret_cast<int*>(300);
+    bool d = true;
+    if (!d) {
+        cout << "False into true" << endl;
+    } else {
+        cout << "True into false" << endl;
+    }
 
     for (int i = 0; i < 500; i++) {
         cout << c[i] << endl;
