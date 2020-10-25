@@ -6,10 +6,14 @@ contact_file = "contacts.json"
 
 app = Flask(__name__)
 
-@app.route('/')
-def hello_world():
+def backend():
     f = open(contact_file, "r")
     result = json.loads(f.read())
+    return result['name'], result['number']
+
+@app.route('/')
+def hello_world():
+    name, number = backend()
     return("""
         <html>
             <body>
@@ -17,4 +21,4 @@ def hello_world():
                 <p>Your number is {1}</p>
             </body>
         </html>
-    """.format(result['name'], result['number']))
+    """.format(name, number))
