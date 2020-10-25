@@ -11,15 +11,24 @@ int main()
 {
     int a = 10;
     int f[]={1,2,3,4};
-    int b[500];
+    int b = 2;
+    int *c = new int;
+    cout << &b << endl;
+    cout << &c << endl;
+    cout << c << endl;
+    c = reinterpret_cast<int*>(300);
+
     for (int i = 0; i < 500; i++) {
-        b[i] = i;
+        cout << c[i] << endl;
     }
-    int *c;
-    c = new int;
-    *c = 30;
-    print_info("a", &a);
-    print_info("b", &b[2]);
-    print_info("c", c);
+    cout << a << endl;
+    cout << b << endl;
+    cout << c << endl;
+
+    delete c;
+    print_info("c", &c[2]);
+
     return 0; 
+    // string a;
+    // cin>>a;
 }
