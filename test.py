@@ -1,21 +1,20 @@
 from os import path
 import json
+from flask import Flask
 
-contact_file = "contacts.txt"
+contact_file = "contacts.json"
 
-if path.exists(contact_file):
+app = Flask(__name__)
+
+@app.route('/')
+def hello_world():
     f = open(contact_file, "r")
-    result = json.loads("""
-    {
-        "name": "Sherlock",
-        "number": 1278364
-    }
-    """)
-    print("I got your contact info! You are {0}, your number is {1}"
-        .format(result['name'], result['number']))
-else:
-    f = open(contact_file, "w") # w for write
-    name = input("I don't have anything on file for you. Enter your name: ")
-    number = input("Enter your number: ")
-    f.write(json.dumps({"name": name, "number": number}))
-    f.close()
+    result = json.loads(f.read())
+    return("""
+        <html>
+            <body>
+                <h1>Hello {0}</h1>
+                <p>Your number is {1}</p>
+            </body>
+        </html>
+    """.format(result['name'], result['number']))
